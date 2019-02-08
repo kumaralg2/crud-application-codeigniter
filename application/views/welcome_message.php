@@ -2,6 +2,9 @@
   
 <div class="container">
 <h3>View All Posts</h3>
+<?php if($msg = $this->session->flashdata('msg')):?>
+   <?php echo $msg;?>
+<?php endif;?>
 <?php echo anchor('welcome/create', 'Add Post', ['class'=>'btn btn-primary']);?>
 <table class="table table-hover">
   <thead>
