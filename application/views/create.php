@@ -1,6 +1,6 @@
 <?php include_once('header.php');?>
 <div class="container">
-<?php echo form_open('welcome/save',['class'=>'form-horizontal']);?>
+<?php echo form_open('Welcome/save',['class'=>'form-horizontal']);?>
 
   <fieldset>
     <div class="form-group">

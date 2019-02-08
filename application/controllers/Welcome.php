@@ -47,10 +47,15 @@ class Welcome extends CI_Controller {
 			// print_r($data);
 			// echo'<pre>';
 			// exit();	
-			$this ->load->model('queries');
-			$this ->queries-> addPost()
-
-
+			$this->load->model('queries');
+			if($this->queries->addPost($data))
+			{
+               $this->session->set_flashdata('msg','Post Saved Succesfully');
+			}else{
+				$this->session >set_flashdata('msg','s to Saved Post');
+               
+			}
+           return redirect('welcome');
 		}
 		else
 		{

@@ -7,10 +7,8 @@
         }
      }
      public function addPost($data){
-         return $this -> db -> insert('tbl_posts',$data);
+         return $this->db->insert('tbl_posts',$data);
      }
-     
-
  }
  
 ?>
