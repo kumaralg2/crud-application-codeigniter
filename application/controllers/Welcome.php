@@ -47,6 +47,8 @@ class Welcome extends CI_Controller {
 			// print_r($data);
 			// echo'<pre>';
 			// exit();	
+			$today = date('Y-m-d');
+			$data['date_created']= $today;
 			$this->load->model('queries');
 			if($this->queries->addPost($data))
 			{
