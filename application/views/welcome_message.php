@@ -23,9 +23,9 @@
             <td scope="row"><?php echo $post->description; ?></td>
             <td scope="row"><?php echo $post->date_created; ?></td>
             <td scope="row">
-            <?php echo anchor('welcome/view', 'View', ['class'=>'label label-primary']);?>
-            <?php echo anchor('welcome/update', 'Update', ['class'=>'label label-success']);?>
-            <?php echo anchor('welcome/delete', 'Delete', ['class'=>'label label-delete']);?>
+            <?php echo anchor("welcome/view/{$post->id}", 'View', ['class'=>'label label-primary']);?>
+            <?php echo anchor("welcome/update/{$post->id}", 'Update', ['class'=>'label label-success']);?>
+            <?php echo anchor("welcome/delete/{$post->id}", 'Delete', ['class'=>'label label-delete']);?>
             </td>
         </tr>
     <?php endforeach;?>

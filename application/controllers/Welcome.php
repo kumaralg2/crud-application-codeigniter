@@ -33,6 +33,8 @@ class Welcome extends CI_Controller {
 		$this->load->view('create');
 		// echo 'Create';
 	}
+
+
 	public function save()
 	{
 		$this->form_validation->set_rules('title', 'Title', 'required');
@@ -54,7 +56,7 @@ class Welcome extends CI_Controller {
 			{
                $this->session->set_flashdata('msg','Post Saved Succesfully');
 			}else{
-				$this->session >set_flashdata('msg','s to Saved Post');
+				$this->session >set_flashdata('msg','Failed to Save Post');
                
 			}
            return redirect('welcome');
@@ -64,4 +66,53 @@ class Welcome extends CI_Controller {
 			$this->load->view('create');
 		}
 	}
+
+	public function update($id){
+		$this->load->model('queries');
+		$post = $this->queries->getSinglePosts($id);
+		//use below to test ouput data
+			// echo'<pre>';
+			// print_r($post);
+			// echo'<pre>';
+			// exit();
+		$this->load->view('update',['post'=>$post]);
+	}
+
+	//Update Method to save the changes once the content is updated
+	public function change($id)
+	{
+		//echo $id;
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('description', 'Description', 'required');
+
+		if ($this->form_validation->run())
+		{
+			$data = $this->input->post();
+			unset($data['update']);
+			//use below to test ouput data
+			// echo'<pre>';
+			// print_r($data);
+			// echo'<pre>';
+			// exit();	
+			$today = date('Y-m-d');
+			$data['date_created']= $today;
+			$this->load->model('queries');
+			if($this->queries->updatePost($data,$id))
+			{
+               $this->session->set_flashdata('msg','Post Updated Succesfully');
+			}else{
+				$this->session >set_flashdata('msg','Failed to Update Post');
+               
+			}
+           return redirect('welcome');
+		}
+		else
+		{
+			$this->load->view('create');
+		}
+	}
+
+
+
 }
+ 
